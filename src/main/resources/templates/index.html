@@ -71,17 +71,24 @@
                     <a class="list-group-item" id="userTab"
                        href="#userTable" data-toggle="tab">User</a>
                     </li>
+                    <li>
+                        <a class="list-group-item" id="orderTab"
+                           href="#orderTable" data-toggle="tab">Orders</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-10">
                 <h1 className="h1 a1" id="h1a1"></h1>
                 <div class="tabs">
-                    <ul sec:authorize="hasRole('ROLE_ADMIN')" class="nav nav-tabs">
+                    <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#adminTable" data-toggle="tab">Users table</a>
+                            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link active" href="#adminTable" data-toggle="tab">Users table</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#newUser" data-toggle="tab">New user</a>
+                            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link" href="#newUser" data-toggle="tab">New user</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#newOrder" data-toggle="tab">New order</a>
                         </li>
                     </ul>
                 </div>
@@ -125,6 +132,31 @@
                                     <th>Age</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="orderTable">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <div class="navbar-brand">All orders</div>
+                        </nav>
+                        <div>
+                            <table class="table table-striped" id="tableOrder" >
+                                <thead>
+                                <tr>
+                                    <th>OrderId</th>
+                                    <th>DateCreate</th>
+                                    <th>Surname</th>
+                                    <th>Telephone</th>
+                                    <th>Device</th>
+                                    <th>Comments</th>
+                                    <th>Master</th>
+                                    <th>Sum</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -180,6 +212,54 @@
                         </form>
                         <div class="p2">
                             <button class="btn btn-success" id="addUser" type="submit">Add new user</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade text-center" id="newOrder">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <div class="navbar-brand">Add new order</div>
+                        </nav>
+
+                        <form id="addForm2">
+
+                            <div class="form-group">
+                                <label for="lastnameCreate" class="col-form-label">LastName</label>
+                                <input type="text" class="form-control lastname" id="lastnameCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telephoneCreate" class="com-form-label">telephone</label>
+                                <input type="number" class="form-control" id="telephoneCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deviceCreate" class="com-form-label">device</label>
+                                <input type="text" class="form-control" id="deviceCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="commentsCreate" class="com-form-label">comments</label>
+                                <input type="text" class="form-control" id="commentsCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="masterCreate" class="com-form-label">master</label>
+                                <input type="text" class="form-control" id="masterCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sumCreate" class="com-form-label">sum</label>
+                                <input type="number" class="form-control" id="sumCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="statusCreate" class="com-form-label">status</label>
+                                <input type="text" class="form-control" id="statusCreate">
+                            </div>
+
+                        </form>
+                        <div class="p2">
+                            <button class="btn btn-success" id="addOrder" type="submit">Add new order</button>
                         </div>
                     </div>
                 </div>

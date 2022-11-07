@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-public class RestApiController {
+public class RestUserController {
 
     private final UserService userService;
 
     @Autowired
-    public RestApiController(RoleService roleService, UserService userService) {
+    public RestUserController(RoleService roleService, UserService userService) {
         this.userService = userService;
     }
 
