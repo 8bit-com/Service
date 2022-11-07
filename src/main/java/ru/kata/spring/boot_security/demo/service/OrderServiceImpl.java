@@ -1,11 +1,15 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.OrderDao;
 import ru.kata.spring.boot_security.demo.model.Order;
+import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class OrderServiceImpl implements OrderService{
     private final OrderDao orderDao;
 
@@ -19,8 +23,13 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Object getOrderById(long id) {
-        return orderDao.findById(id);
+    public Order getOrderById(long id) {
+        Order order = null;
+        Optional<Order> optional = orderDao.findById(id);
+        if(optional.isPresent()) {
+            order = optional.get();
+        }
+        return order;
     }
 
     @Override

@@ -12,6 +12,9 @@ $(async function () {
     await getNewUserForm();
     await getDefaultModal();
     await createUser();
+    await getOrders();
+    await getNewOrderForm();
+    await createOrder();
 
 })
 
@@ -28,6 +31,20 @@ const userFetch = {
     updateUser: async (user, id) => await fetch(`api/users/${id}`, {method: 'PUT', headers: userFetch.head, body: JSON.stringify(user)}),
     deleteUser: async (id) => await fetch(`api/users/${id}`, {method: 'DELETE', headers: userFetch.head})
 }
+
+const orderFetch = {
+    head: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Referer': null
+    },
+    findAllOrders: async () => await fetch('api/orders'),
+    findOneOrder: async (id) => await fetch(`api/orders/${id}`),
+    addNewOrder: async (order) => await fetch('api/orders', {method: 'POST', headers: orderFetch.head, body: JSON.stringify(order)}),
+    updateOrder: async (order, id) => await fetch(`api/orders/${id}`, {method: 'PUT', headers: orderFetch.head, body: JSON.stringify(order)}),
+    deleteOrder: async (id) => await fetch(`api/orders/${id}`, {method: 'DELETE', headers: orderFetch.head})
+}
+
 
 async function infoUser() {
     let temp = '';
