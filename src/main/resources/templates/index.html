@@ -39,6 +39,9 @@
         #newUser{
             font-weight: bold;
         }
+        #newOrder{
+            font-weight: bold;
+        }
         .select{
             max-height: 100px;
         }
@@ -117,6 +120,7 @@
                             </table>
                         </div>
                     </div>
+
                     <div class="tab-pane fade" id="userTable">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <div class="navbar-brand">About user</div>
@@ -164,6 +168,54 @@
                                 <tbody>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade text-center" id="newOrder">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            <div class="navbar-brand">Add new order</div>
+                        </nav>
+
+                        <form id="addForm2">
+
+                            <div class="form-group">
+                                <label for="lastNameCreate" class="com-form-label">LastName</label>
+                                <input type="text" class="form-control" id="lastNameCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telephoneCreate" class="com-form-label">Telephone</label>
+                                <input type="number" class="form-control" id="telephoneCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deviceCreate" class="com-form-label">Device</label>
+                                <input type="text" class="form-control" id="deviceCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="commentsCreate" class="com-form-label">Comments</label>
+                                <input type="text" class="form-control" id="commentsCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="masterCreate" class="com-form-label">Master</label>
+                                <input type="text" class="form-control" id="masterCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sumCreate" class="com-form-label">Sum</label>
+                                <input type="number" class="form-control" id="sumCreate">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="statusCreate" class="com-form-label">OrderStatus</label>
+                                <input type="text" class="form-control" id="statusCreate">
+                            </div>
+
+                        </form>
+                        <div class="p2">
+                            <button class="btn btn-success" id="addOrder" type="submit">Add new order</button>
                         </div>
                     </div>
 
@@ -217,53 +269,6 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade text-center" id="newOrder">
-                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <div class="navbar-brand">Add new order</div>
-                        </nav>
-
-                        <form id="addForm2">
-
-                            <div class="form-group">
-                                <label for="lastNameCreate" class="com-form-label">LastName</label>
-                                <input type="text" class="form-control" id="lastNameCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="telephoneCreate" class="com-form-label">Telephone</label>
-                                <input type="number" class="form-control" id="telephoneCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="deviceCreate" class="com-form-label">Device</label>
-                                <input type="text" class="form-control" id="deviceCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="commentsCreate" class="com-form-label">Comments</label>
-                                <input type="text" class="form-control" id="commentsCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="masterCreate" class="com-form-label">Master</label>
-                                <input type="text" class="form-control" id="masterCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sumCreate" class="com-form-label">Sum</label>
-                                <input type="number" class="form-control" id="sumCreate">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="statusCreate" class="com-form-label">OrderStatus</label>
-                                <input type="text" class="form-control" id="statusCreate">
-                            </div>
-
-                        </form>
-                        <div class="p2">
-                            <button class="btn btn-success" id="addOrder" type="submit">Add new order</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

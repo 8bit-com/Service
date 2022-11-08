@@ -185,7 +185,6 @@ async function getDefaultModal() {
                 editOrder(thisModal, orderId);
                 break;
             case 'delete2':
-                console.log("deleteButton2 click");
                 deleteOrder(thisModal, orderId);
                 break;
         }
