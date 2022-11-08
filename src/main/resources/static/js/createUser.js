@@ -96,7 +96,7 @@ async function createOrder() {
                             </button>
                         </div>`;
             addOrderForm.prepend(alert);
-            $('.nav-tabs a[href="#orderTable"]').tab('show');
+            $('.nav-tabs a[href="#tableAllOrders"]').tab('show');
         } else {
             let body = await response.json();
             let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="messageError">

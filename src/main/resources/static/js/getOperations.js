@@ -173,7 +173,7 @@ async function getDefaultModal() {
         let thisModal = $(event.target);
         let userid = thisModal.attr('data-userid');
         let action = thisModal.attr('data-action');
-        let orderid = thisModal.attr('data-id');
+        let orderId = thisModal.attr('data-id');
         switch (action) {
             case 'edit':
                 editUser(thisModal, userid);
@@ -182,11 +182,11 @@ async function getDefaultModal() {
                 deleteUser(thisModal, userid);
                 break;
             case 'edit2':
-                editOrder(thisModal, orderid);
+                editOrder(thisModal, orderId);
                 break;
             case 'delete2':
                 console.log("deleteButton2 click");
-                deleteOrder(thisModal, orderid);
+                deleteOrder(thisModal, orderId);
                 break;
         }
     }).on("hidden.bs.modal", (e) => {
