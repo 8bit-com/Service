@@ -3,11 +3,12 @@ package ru.kata.spring.boot_security.demo.service;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.OrderDao;
 import ru.kata.spring.boot_security.demo.model.Order;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -45,5 +46,14 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public void updateOrder(@Valid Order order) {
         orderDao.save(order);
+    }
+
+    @Override
+    @PostConstruct
+    public void addDefaultOrder() {
+        Order order1 = new Order(new Date(), "sdgh", 435434l, "sdgh", "sdgh", "sdgh", 435l, "sdgh");
+        Order order2 = new Order(new Date(), "sdfg", 2345l, "gfdg", "dfsf", "sfg", 4345l, "dfh");
+        addOrder(order1);
+        addOrder(order2);
     }
 }

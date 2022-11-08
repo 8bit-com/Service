@@ -105,3 +105,110 @@ async function editUser(modal, id) {
         }
     })
 }
+
+
+async function editOrder(modal, id) {
+    let oneOrder = await orderFetch.findOneOrder(id);
+    let order = oneOrder.json();
+
+    modal.find('.modal-title').html('Edit order');
+
+    let editButton = `<button  class="btn btn-info" id="editButton">Edit</button>`;
+    let closeButton = `<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>`
+    modal.find('.modal-footer').append(editButton);
+    modal.find('.modal-footer').append(closeButton);
+
+    order.then(order => {
+        let bodyForm = `
+            <form class="form-group text-center" id="editOrder">
+               <div class="form-group">
+                    <label for="id" class="col-form-label">ID</label>
+                    <input type="text" class="form-control" id="id" value="${order.id}" readonly>
+               </div>
+               
+               <div class="form-group">
+                    <label for="dateCreate" class="col-form-label">dateCreate</label>
+                    <input type="text" class="form-control" id="dateCreate" value="${order.dateCreate}" readonly>
+               </div>
+                   
+               <div class="form-group">
+                    <label for="lastName" class="col-form-label">LastName</label>
+                    <input type="text" class="form-control" id="lastName" value="${order.lastName}">
+               </div>
+
+                <div class="form-group">
+                    <label for="telephone" class="com-form-label">telephone</label>
+                    <input type="number" class="form-control" id="telephone" value="${order.telephone}">
+                </div>
+
+                <div class="form-group">
+                    <label for="device" class="com-form-label">device</label>
+                    <input type="text" class="form-control" id="device" value="${order.device}">
+                </div>
+
+                <div class="form-group">
+                    <label for="comments" class="com-form-label">comments</label>
+                    <input type="text" class="form-control" id="comments" value="${order.comments}">
+                </div>
+
+                <div class="form-group">
+                    <label for="master" class="com-form-label">master</label>
+                    <input type="text" class="form-control" id="master" value="${order.master}">
+                </div>
+
+                <div class="form-group">
+                    <label for="sum" class="com-form-label">sum</label>
+                    <input type="number" class="form-control" id="sum" value="${order.sum}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="orderStatus" class="com-form-label">orderStatus</label>
+                    <input type="text" class="form-control" id="orderStatus" value="${order.orderStatus}">
+                </div>
+                
+            </form>
+        `;
+        modal.find('.modal-body').append(bodyForm);
+    })
+
+    $("#editButton").on('click', async () => {
+
+        let id = modal.find("#id").val().trim();
+        let lastName = modal.find("#lastName").val().trim();
+        let dateCreate = modal.find("#dateCreate").val().trim();
+        let telephone = modal.find("#telephone").val().trim();
+        let device = modal.find("#device").val().trim();
+        let comments = modal.find("#comments").val().trim();
+        let master = modal.find("#master").val().trim();
+        let sum = modal.find("#sum").val().trim();
+        let orderStatus = modal.find("#orderStatus").val().trim();
+
+        let data = {
+            id: id,
+            dateCreate: dateCreate,
+            lastName: lastName,
+            telephone: telephone,
+            device: device,
+            comments: comments,
+            master: master,
+            sum: sum,
+            orderStatus: orderStatus
+
+        }
+        const response = await orderFetch.updateOrder(data, id);
+
+        if (response.ok) {
+            await getOrders();
+            modal.modal('hide');
+        } else {
+            let body = await response.json();
+            let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="messageError">
+                            ${body.info}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>`;
+            modal.find('.modal-body').prepend(alert);
+        }
+    })
+}

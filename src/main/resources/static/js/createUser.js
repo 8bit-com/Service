@@ -61,7 +61,7 @@ async function createUser() {
 async function createOrder() {
     $('#addOrder').click(async () =>  {
         let addOrderForm = $('#addForm2')
-        let lastname = addOrderForm.find('#lastnameCreate').val().trim();
+        let lastName = addOrderForm.find('#lastNameCreate').val().trim();
         let telephone = addOrderForm.find('#telephoneCreate').val().trim();
         let device = addOrderForm.find('#deviceCreate').val().trim();
         let comments = addOrderForm.find('#commentsCreate').val().trim();
@@ -70,7 +70,7 @@ async function createOrder() {
         let orderStatus = addOrderForm.find('#statusCreate').val().trim();
 
         let data = {
-            lastname: lastname,
+            lastName: lastName,
             telephone: telephone,
             device: device,
             comments: comments,
@@ -82,7 +82,7 @@ async function createOrder() {
         const response = await orderFetch.addNewOrder(data);
         if (response.ok) {
             await getOrders();
-            addOrderForm.find('#lastnameCreate').val('');
+            addOrderForm.find('#lastNameCreate').val('');
             addOrderForm.find('#telephoneCreate').val('');
             addOrderForm.find('#deviceCreate').val('');
             addOrderForm.find('#commentsCreate').val('');
@@ -96,7 +96,7 @@ async function createOrder() {
                             </button>
                         </div>`;
             addOrderForm.prepend(alert);
-            $('.nav-tabs a[href="#newOrder"]').tab('show');
+            $('.nav-tabs a[href="#orderTable"]').tab('show');
         } else {
             let body = await response.json();
             let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="messageError">

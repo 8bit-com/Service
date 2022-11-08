@@ -17,6 +17,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,7 @@ public class RestOrderController {
             return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
         }
         try {
+            order.setDateCreate(new Date());
             orderService.addOrder(order);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (UserUsernameExistException u) {

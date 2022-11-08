@@ -64,11 +64,11 @@
             <div class="col-2">
                 <ul class="list-group list-group-flush">
                     <li>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')"  class="list-group-item" id="adminTab"
+                        <a sec:authorize="hasRole('ROLE_ADMIN')"  class="list-group-item" id="adminTab"
                            href="#adminTable" data-toggle="tab">Admin</a>
                     </li>
                     <li>
-                    <a class="list-group-item" id="userTab"
+                        <a class="list-group-item" id="userTab"
                        href="#userTable" data-toggle="tab">User</a>
                     </li>
                     <li>
@@ -82,7 +82,7 @@
                 <div class="tabs">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link active" href="#adminTable" data-toggle="tab">Tables</a>
+                            <a class="nav-link active" href="#adminTable" data-toggle="tab">Tables</a>
                         </li>
                         <li class="nav-item">
                             <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link" href="#newUser" data-toggle="tab">New user</a>
@@ -145,18 +145,20 @@
                             <div class="navbar-brand">All orders</div>
                         </nav>
                         <div>
-                            <table class="table table-striped" id="tableOrder" >
+                            <table class="table table-striped" id="tableAllOrders" >
                                 <thead>
                                 <tr>
                                     <th>OrderId</th>
                                     <th>DateCreate</th>
-                                    <th>Surname</th>
+                                    <th>LastName</th>
                                     <th>Telephone</th>
                                     <th>Device</th>
                                     <th>Comments</th>
                                     <th>Master</th>
                                     <th>Sum</th>
                                     <th>OrderStatus</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -223,37 +225,37 @@
                         <form id="addForm2">
 
                             <div class="form-group">
-                                <label for="lastnameCreate" class="col-form-label">LastName</label>
-                                <input type="text" class="form-control lastname" id="lastnameCreate">
+                                <label for="lastNameCreate" class="com-form-label">LastName</label>
+                                <input type="text" class="form-control" id="lastNameCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="telephoneCreate" class="com-form-label">telephone</label>
+                                <label for="telephoneCreate" class="com-form-label">Telephone</label>
                                 <input type="number" class="form-control" id="telephoneCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="deviceCreate" class="com-form-label">device</label>
+                                <label for="deviceCreate" class="com-form-label">Device</label>
                                 <input type="text" class="form-control" id="deviceCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="commentsCreate" class="com-form-label">comments</label>
+                                <label for="commentsCreate" class="com-form-label">Comments</label>
                                 <input type="text" class="form-control" id="commentsCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="masterCreate" class="com-form-label">master</label>
+                                <label for="masterCreate" class="com-form-label">Master</label>
                                 <input type="text" class="form-control" id="masterCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="sumCreate" class="com-form-label">sum</label>
+                                <label for="sumCreate" class="com-form-label">Sum</label>
                                 <input type="number" class="form-control" id="sumCreate">
                             </div>
 
                             <div class="form-group">
-                                <label for="statusCreate" class="com-form-label">orderStatus</label>
+                                <label for="statusCreate" class="com-form-label">OrderStatus</label>
                                 <input type="text" class="form-control" id="statusCreate">
                             </div>
 
@@ -272,27 +274,6 @@
 
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                    </div>
-
-                    <div class="modal-footer">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="defaultModal2" tabindex="-1" role="dialog" aria-labelledby="someDefaultModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel2">Modal2 title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

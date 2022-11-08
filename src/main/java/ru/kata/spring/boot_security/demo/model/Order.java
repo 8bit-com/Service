@@ -36,8 +36,19 @@ public class Order {
     private Long sum;
 
     @Column(name = "status")
-    private String status;
+    private String orderStatus;
 
     public Order() {
+    }
+    public Order(Date dateCreate, String lastName, Long telephone, String device, String comments, String master, Long sum, String orderStatus) {
+        this.dateCreate = dateCreate;
+        this.lastName = lastName;
+        this.telephone = telephone;
+        this.device = device;
+        this.comments = comments;
+        this.master = master;
+        this.sum = sum;
+        this.orderStatus = orderStatus;
+
     }
 }

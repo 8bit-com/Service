@@ -8,14 +8,15 @@ $(async function () {
     await getUser();
     await infoUser();
     await tittle();
-    await getUsers();
+    await getOrders();
     await getNewUserForm();
     await getDefaultModal();
     await createUser();
-    await getOrders();
     await getNewOrderForm();
     await createOrder();
-
+    if (isUser == false) {
+        await getUsers();
+    }
 })
 
 const userFetch = {
@@ -24,8 +25,8 @@ const userFetch = {
         'Content-Type': 'application/json',
         'Referer': null
     },
-    findAllUsers: async () => await fetch('api/users'),
     findUserByUsername: async () => await fetch(`api/user`),
+    findAllUsers: async () => await fetch('api/users'),
     findOneUser: async (id) => await fetch(`api/users/${id}`),
     addNewUser: async (user) => await fetch('api/users', {method: 'POST', headers: userFetch.head, body: JSON.stringify(user)}),
     updateUser: async (user, id) => await fetch(`api/users/${id}`, {method: 'PUT', headers: userFetch.head, body: JSON.stringify(user)}),

@@ -1,4 +1,6 @@
 async function getUser() {
+
+
     let temp = '';
     const table = document.querySelector('#tableUser tbody');
     await userFetch.findUserByUsername()
@@ -17,6 +19,8 @@ async function getUser() {
             `;
             table.innerHTML = temp;
 
+
+
             $(function (){
                 let role = ""
             for (let i = 0; i < user.roles.length; i++) {
@@ -25,9 +29,12 @@ async function getUser() {
                     isUser = false;
                 }
             }
+
+
             if (isUser) {
             $("#userTable").addClass("show active");
             $("#userTab").addClass("show active");
+
             } else {
             $("#adminTable").addClass("show active");
             $("#adminTab").addClass("show active");
@@ -41,7 +48,7 @@ async function tittle() {
     const h1a1 = document.querySelector('#h1a1');
     if (isUser) {
         temp = `
-            <h1 className="h1 a1" id="h1a1">User information page</h1>
+            <h1 className="h1 a1" id="h1a1">User panel</h1>
             `;
         h1a1.innerHTML = temp;
     } else {
@@ -85,7 +92,7 @@ async function getUsers() {
 
     $("#tableAllUsers").find('button').on('click', (event) => {
         let defaultModal = $('#defaultModal');
-
+        console.log("tableAllUsers click");
         let targetButton = $(event.target);
         let buttonUserId = targetButton.attr('data-userid');
         let buttonAction = targetButton.attr('data-action');
@@ -98,7 +105,7 @@ async function getUsers() {
 
 async function getOrders() {
     let temp2 = '';
-    const table2 = document.querySelector('#tableOrder tbody');
+    const table2 = document.querySelector('#tableAllOrders tbody');
     await orderFetch.findAllOrders()
         .then(res => res.json())
         .then(orders => {
@@ -113,13 +120,13 @@ async function getOrders() {
                     <td>${order.comments}</td>
                     <td>${order.master}</td>
                     <td>${order.sum}</td>
-                    <td>${order.orderstatus}</td>
+                    <td>${order.orderStatus}</td>
                     <td>
-                        <button type="button" data-orderid="${order.id}" data-action="edit" class="btn btn-info"
+                        <button type="button" data-id="${order.id}" data-action="edit2" class="btn btn-info"
                             className data-toggle="modal" data-target="#editModal">Edit</button>
                     </td>
                     <td>
-                        <button type="button" data-userid="${order.id}" data-action="delete" class="btn btn-danger"
+                        <button type="button" data-id="${order.id}" data-action="delete2" class="btn btn-danger"
                             className data-toggle="modal" data-target="#deleteModal">Delete</button>
                     </td>
                 </tr>
@@ -130,15 +137,14 @@ async function getOrders() {
         })
 
     $("#tableAllOrders").find('button').on('click', (event) => {
-        let defaultModal2 = $('#defaultModal2');
-
+        let defaultModal = $('#defaultModal');
         let targetButton = $(event.target);
-        let buttonOrderId = targetButton.attr('data-orderid');
+        let buttonOrderId = targetButton.attr('data-id');
         let buttonAction = targetButton.attr('data-action');
 
-        defaultModal2.attr('data-orderid', buttonOrderId);
-        defaultModal2.attr('data-action', buttonAction);
-        defaultModal2.modal('show');
+        defaultModal.attr('data-id', buttonOrderId);
+        defaultModal.attr('data-action', buttonAction);
+        defaultModal.modal('show');
     })
 }
 
@@ -167,6 +173,7 @@ async function getDefaultModal() {
         let thisModal = $(event.target);
         let userid = thisModal.attr('data-userid');
         let action = thisModal.attr('data-action');
+        let orderid = thisModal.attr('data-id');
         switch (action) {
             case 'edit':
                 editUser(thisModal, userid);
@@ -174,29 +181,11 @@ async function getDefaultModal() {
             case 'delete':
                 deleteUser(thisModal, userid);
                 break;
-        }
-    }).on("hidden.bs.modal", (e) => {
-        let thisModal = $(e.target);
-        thisModal.find('.modal-title').html('');
-        thisModal.find('.modal-body').html('');
-        thisModal.find('.modal-footer').html('');
-    })
-}
-
-async function getDefaultModal2() {
-    $('#defaultModal2').modal({
-        keyboard: true,
-        backdrop: "static",
-        show: false
-    }).on("show.bs.modal", (event) => {
-        let thisModal = $(event.target);
-        let orderid = thisModal.attr('data-orderid');
-        let action = thisModal.attr('data-action');
-        switch (action) {
-            case 'edit':
+            case 'edit2':
                 editOrder(thisModal, orderid);
                 break;
-            case 'delete':
+            case 'delete2':
+                console.log("deleteButton2 click");
                 deleteOrder(thisModal, orderid);
                 break;
         }
