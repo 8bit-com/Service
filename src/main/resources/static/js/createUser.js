@@ -67,7 +67,16 @@ async function createOrder() {
         let comments = addOrderForm.find('#commentsCreate').val().trim();
         let master = addOrderForm.find('#masterCreate').val().trim();
         let sum = addOrderForm.find('#sumCreate').val().trim();
-        let orderStatus = addOrderForm.find('#statusCreate').val().trim();
+        let checkedOrderStatus = () => {
+            let array = []
+            let options = document.querySelector('#statusCreate').options
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].selected) {
+                    array.push(orderStatusList[i])
+                }
+            }
+            return array;
+        }
 
         let data = {
             lastName: lastName,
@@ -76,9 +85,9 @@ async function createOrder() {
             comments: comments,
             master: master,
             sum: sum,
-            orderStatus: orderStatus
+            orderStatus: checkedOrderStatus()
         }
-
+        console.log(data.orderStatus)
         const response = await orderFetch.addNewOrder(data);
         if (response.ok) {
             await getOrders();
@@ -88,7 +97,7 @@ async function createOrder() {
             addOrderForm.find('#commentsCreate').val('');
             addOrderForm.find('#masterCreate').val('');
             addOrderForm.find('#sumCreate').val('');
-            addOrderForm.find('#statusCreate').val('');
+            addOrderForm.find(checkedOrderStatus()).val('');
             let alert = `<div class="alert alert-success alert-dismissible fade show col-12" role="alert" id="successMessage">
                          Order create successful!
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

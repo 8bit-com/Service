@@ -163,7 +163,10 @@ async function editOrder(modal, id) {
                 
                 <div class="form-group">
                     <label for="orderStatus" class="com-form-label">orderStatus</label>
-                    <input type="text" class="form-control" id="orderStatus" value="${order.orderStatus}">
+                    <select multiple id="orderStatus" size="2" class="form-control" style="max-height: 100px">
+                    <option value="STATUS_NEW">USER</option>
+                    <option value="STATUS_CLOSE">ADMIN</option>
+                    </select>
                 </div>
                 
             </form>
@@ -172,6 +175,16 @@ async function editOrder(modal, id) {
     })
 
     $("#editButton").on('click', async () => {
+        let checkedOrderStatus = () => {
+            let array = []
+            let options = document.querySelector('#orderStatus').options
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].selected) {
+                    array.push(orderStatusList[i])
+                }
+            }
+            return array;
+        }
 
         let id = modal.find("#id").val().trim();
         let lastName = modal.find("#lastName").val().trim();
@@ -181,7 +194,6 @@ async function editOrder(modal, id) {
         let comments = modal.find("#comments").val().trim();
         let master = modal.find("#master").val().trim();
         let sum = modal.find("#sum").val().trim();
-        let orderStatus = modal.find("#orderStatus").val().trim();
 
         let data = {
             id: id,
@@ -192,7 +204,7 @@ async function editOrder(modal, id) {
             comments: comments,
             master: master,
             sum: sum,
-            orderStatus: orderStatus
+            orderStatus: checkedOrderStatus()
 
         }
         const response = await orderFetch.updateOrder(data, id);

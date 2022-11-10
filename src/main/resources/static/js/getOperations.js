@@ -110,17 +110,19 @@ async function getOrders() {
         .then(res => res.json())
         .then(orders => {
             orders.forEach(order => {
-                temp2 += `
+                let dateOrd1 = order.dateCreate.substr(0, 10);
+                let dateOrd2 = order.dateCreate.substr(11, 8);
+                    temp2 += `
                 <tr>
                     <td>${order.id}</td>
-                    <td>${order.dateCreate}</td>
+                    <td>${dateOrd1 + "<br/>" + dateOrd2}</td>
                     <td>${order.lastName}</td>
                     <td>${order.telephone}</td>
                     <td>${order.device}</td>
                     <td>${order.comments}</td>
                     <td>${order.master}</td>
                     <td>${order.sum}</td>
-                    <td>${order.orderStatus}</td>
+                    <td>${order.orderStatus.map(e => " " + e.orderStatus.substr(7))}</td>
                     <td>
                         <button type="button" data-id="${order.id}" data-action="edit2" class="btn btn-info"
                             className data-toggle="modal" data-target="#editModal">Edit</button>

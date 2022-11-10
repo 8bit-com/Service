@@ -46,12 +46,12 @@ async function deleteUser(modal, id) {
                 </div>
                 
                  <div class="form-group">
-                <label for="roles" class="com-form-label">Role:</label>
-                <select id="roles" class="form-control select" size="2" name="roles" style="max-height: 100px" disabled>
-                <option>${user.roles.map(role => " " + role.role.substr(5))}</option>
-            })}</option>
-                </select>
-            </div>
+                    <label for="roles" class="com-form-label">Role:</label>
+                        <select id="roles" class="form-control select" size="2" name="roles" style="max-height: 100px" disabled>
+                        <option>${user.roles.map(role => " " + role.role.substr(5))}</option>
+                            })}</option>
+                        </select>
+                 </div>
 
             </form>
         `;
@@ -126,10 +126,13 @@ async function deleteOrder(modal, id) {
                     <label for="sum" class="com-form-label">sum</label>
                     <input type="number" class="form-control" id="sum" value="${order.sum}" readonly>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="orderStatus" class="com-form-label">orderStatus</label>
-                    <input type="text" class="form-control" id="orderStatus" value="${order.orderStatus}"  readonly>
+                    <label for="orderStatus" class="com-form-label">OrderStatus:</label>
+                        <select id="orderStatus" class="form-control select" size="2" name="orderStatus" style="max-height: 100px" disabled>
+                        <option>${order.orderStatus.map(orderStatus => " " + orderStatus.orderStatus.substr(5))}</option>
+                            })}</option>
+                        </select>
                 </div>
 
             </form>

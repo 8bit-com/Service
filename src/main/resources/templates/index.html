@@ -209,8 +209,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="statusCreate" class="com-form-label">OrderStatus</label>
-                                <input type="text" class="form-control" id="statusCreate">
+                                <label for="statusCreate" class="com-form-label">OrderStatus:</label>
+                                <select multiple id="statusCreate" class="form-control select" size="2">
+                                    <option value="STATUS_NEW">NEW</option>
+                                    <option value="STATUS_CLOSE">CLOSE</option>
+                                </select>
                             </div>
 
                         </form>

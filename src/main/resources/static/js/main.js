@@ -2,6 +2,10 @@ let roleList = [
     {id: 1, role: "ROLE_USER"},
     {id: 2, role: "ROLE_ADMIN"}
 ]
+let orderStatusList = [
+    {id: 1, orderStatus: "STATUS_NEW"},
+    {id: 2, orderStatus: "STATUS_CLOSE"}
+]
 let isUser = true;
 
 $(async function () {

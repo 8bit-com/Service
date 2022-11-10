@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -10,15 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.Exception.ExceptionInfo;
 import ru.kata.spring.boot_security.demo.Exception.UserUsernameExistException;
 import ru.kata.spring.boot_security.demo.model.Order;
-import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.OrderService;
-import ru.kata.spring.boot_security.demo.service.RoleService;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.model.OrderStatus;
+import ru.kata.spring.boot_security.demo.service.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,7 +26,7 @@ public class RestOrderController {
     private final OrderService orderService;
 
     @Autowired
-    public RestOrderController(OrderService orderService) {
+    public RestOrderController(OrderStatusService orderStatusService, OrderService orderService) {
         this.orderService = orderService;
     }
 

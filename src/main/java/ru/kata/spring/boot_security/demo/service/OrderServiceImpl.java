@@ -2,9 +2,9 @@ package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.DAO.OrderDao;
+import ru.kata.spring.boot_security.demo.DAO.OrderStatusDAO;
 import ru.kata.spring.boot_security.demo.model.Order;
-import ru.kata.spring.boot_security.demo.model.Role;
-import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.model.OrderStatus;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -13,9 +13,11 @@ import java.util.*;
 @Service
 public class OrderServiceImpl implements OrderService{
     private final OrderDao orderDao;
+    private final OrderStatusDAO orderStatusDAO;
 
-    public OrderServiceImpl(OrderDao orderDao) {
+    public OrderServiceImpl(OrderDao orderDao, OrderStatusDAO orderStatusDAO) {
         this.orderDao = orderDao;
+        this.orderStatusDAO = orderStatusDAO;
     }
 
     @Override
@@ -51,8 +53,13 @@ public class OrderServiceImpl implements OrderService{
     @Override
     @PostConstruct
     public void addDefaultOrder() {
-        Order order1 = new Order(new Date(), "sdgh", 435434l, "sdgh", "sdgh", "sdgh", 435l, "sdgh");
-        Order order2 = new Order(new Date(), "sdfg", 2345l, "gfdg", "dfsf", "sfg", 4345l, "dfh");
+        Set<OrderStatus> orderStatus1 = new HashSet<>();
+        orderStatus1.add(orderStatusDAO.findById(1L).orElse(null));
+        Set<OrderStatus> orderStatus2 = new HashSet<>();
+        orderStatus2.add(orderStatusDAO.findById(1L).orElse(null));
+        orderStatus2.add(orderStatusDAO.findById(2L).orElse(null));
+        Order order1 = new Order(new Date(), "sdgh", 435434l, "sdgh", "sdgh", "sdgh", 435l, orderStatus1);
+        Order order2 = new Order(new Date(), "sdfg", 2345l, "gfdg", "dfsf", "sfg", 4345l, orderStatus2);
         addOrder(order1);
         addOrder(order2);
     }
