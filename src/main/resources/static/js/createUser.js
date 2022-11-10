@@ -59,6 +59,17 @@ async function createUser() {
 }
 
 async function createOrder() {
+    let temp3 = '';
+    const table3 = document.querySelector('#statusCreate');
+
+    orderStatusList.forEach(orStat => {
+        temp3 += `
+            <option value=${orStat.orderStatus}>${orStat.orderStatus}</option>
+        `;
+    })
+    table3.innerHTML = temp3;
+
+
     $('#addOrder').click(async () =>  {
         let addOrderForm = $('#addForm2')
         let lastName = addOrderForm.find('#lastNameCreate').val().trim();
@@ -87,7 +98,7 @@ async function createOrder() {
             sum: sum,
             orderStatus: checkedOrderStatus()
         }
-        console.log(data.orderStatus)
+
         const response = await orderFetch.addNewOrder(data);
         if (response.ok) {
             await getOrders();
