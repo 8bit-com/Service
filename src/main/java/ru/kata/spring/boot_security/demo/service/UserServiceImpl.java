@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.data.domain.Pageable;
 import ru.kata.spring.boot_security.demo.DAO.RoleDAO;
 import ru.kata.spring.boot_security.demo.DAO.UserDAO;
 import ru.kata.spring.boot_security.demo.model.Role;
@@ -32,6 +33,11 @@ public class UserServiceImpl implements UserService {
     public User passwordCoder(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return user;
+    }
+
+    @Override
+    public List<User> getByRole(String roles) {
+        return userDAO.findByRolesIn(roles);
     }
 
     @Override
@@ -75,8 +81,8 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles1 = new HashSet<>();
         roles1.add(roleDAO.findById(1L).orElse(null));
         Set<Role> roles2 = new HashSet<>();
-        roles2.add(roleDAO.findById(1L).orElse(null));
         roles2.add(roleDAO.findById(2L).orElse(null));
+        roles2.add(roleDAO.findById(3L).orElse(null));
         User user1 = new User("Steve","Jobs",(byte) 25, "user@mail.com", "user","12345",roles1);
         User user2 = new User("Garry","Potter",(byte) 30, "admin@mail.com", "admin","admin",roles2);
         save(user1);

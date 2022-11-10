@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.data.domain.Pageable;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
@@ -14,4 +16,6 @@ public interface UserService {
     void addDefaultUser();
     void update(User user);
     User passwordCoder(User user);
+
+    List<User> getByRole(String roles);
 }

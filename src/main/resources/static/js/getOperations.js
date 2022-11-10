@@ -46,7 +46,12 @@ async function getUser() {
 async function tittle() {
     let temp = ''
     const h1a1 = document.querySelector('#h1a1');
-    if (isUser) {
+    if (isMaster) {
+        temp = `
+            <h1 className="h1 a1" id="h1a1">Master panel</h1>
+            `;
+        h1a1.innerHTML = temp;
+    } else if (isUser) {
         temp = `
             <h1 className="h1 a1" id="h1a1">User panel</h1>
             `;

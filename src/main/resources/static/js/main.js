@@ -1,12 +1,14 @@
 let roleList = [
     {id: 1, role: "ROLE_USER"},
-    {id: 2, role: "ROLE_ADMIN"}
+    {id: 2, role: "ROLE_ADMIN"},
+    {id: 3, role: "ROLE_MASTER"}
 ]
 let orderStatusList = [
     {id: 1, orderStatus: "STATUS_NEW"},
     {id: 2, orderStatus: "STATUS_CLOSE"}
 ]
 let isUser = true;
+let isMaster = true;
 
 $(async function () {
     await getUser();
@@ -29,6 +31,7 @@ const userFetch = {
         'Content-Type': 'application/json',
         'Referer': null
     },
+    findUserByRole: async () => await  fetch('api/users/'),
     findUserByUsername: async () => await fetch(`api/user`),
     findAllUsers: async () => await fetch('api/users'),
     findOneUser: async (id) => await fetch(`api/users/${id}`),

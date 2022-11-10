@@ -30,6 +30,7 @@ public class RoleServiceImpl implements RoleService{
     public void addDefaultRole() {
         roleDAO.save(new Role("ROLE_USER"));
         roleDAO.save(new Role("ROLE_ADMIN"));
+        roleDAO.save(new Role("ROLE_MASTER"));
     }
 
     @Override

@@ -1,4 +1,15 @@
 async function createUser() {
+    let temp5 = '';
+    const table5 = document.querySelector('#rolesCreate');
+
+    roleList.forEach(role => {
+        temp5 += `
+            <option value=${role.role}>${role.role}</option>
+        `;
+    })
+    table5.innerHTML = temp5;
+
+
     $('#addUser').click(async () =>  {
         let addUserForm = $('#addForm')
         let username = addUserForm.find('#usernameCreate').val().trim();
@@ -70,13 +81,37 @@ async function createOrder() {
     table3.innerHTML = temp3;
 
 
+    let temp4 = '';
+    const table4 = document.querySelector('#masterCreate');
+    let masterList = [];
+    await userFetch.findUserByRole()
+        .then(res => res.json())
+        .then(users => {
+            masterList = users;
+        })
+
+    masterList.forEach(master => {
+        temp4 += `
+            <option value=${master.surname}>${master.surname}</option>
+        `;
+    })
+    table4.innerHTML = temp4;
+
+
     $('#addOrder').click(async () =>  {
         let addOrderForm = $('#addForm2')
         let lastName = addOrderForm.find('#lastNameCreate').val().trim();
         let telephone = addOrderForm.find('#telephoneCreate').val().trim();
         let device = addOrderForm.find('#deviceCreate').val().trim();
         let comments = addOrderForm.find('#commentsCreate').val().trim();
-        let master = addOrderForm.find('#masterCreate').val().trim();
+        let master = "";
+        let options2 = document.querySelector('#masterCreate').options
+        for (let i = 0; i < options2.length; i++) {
+            if (options2[i].selected) {
+                master = masterList[i].surname;
+            }
+        }
+        console.log(master);
         let sum = addOrderForm.find('#sumCreate').val().trim();
         let checkedOrderStatus = () => {
             let array = []
@@ -97,6 +132,7 @@ async function createOrder() {
             master: master,
             sum: sum,
             orderStatus: checkedOrderStatus()
+
         }
 
         const response = await orderFetch.addNewOrder(data);

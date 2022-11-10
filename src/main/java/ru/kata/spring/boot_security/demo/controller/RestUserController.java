@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.data.domain.Pageable;
 import ru.kata.spring.boot_security.demo.Exception.ExceptionInfo;
 import ru.kata.spring.boot_security.demo.Exception.UserUsernameExistException;
 import ru.kata.spring.boot_security.demo.model.OrderStatus;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,9 +25,11 @@ import java.util.stream.Collectors;
 public class RestUserController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public RestUserController(RoleService roleService, UserService userService) {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
@@ -60,6 +62,13 @@ public class RestUserController {
     public ResponseEntity<User> getUser (@PathVariable("id") long id) {
         User user = userService.getById(id);
         return new ResponseEntity<>(user,HttpStatus.OK);
+    }
+
+    @GetMapping("users/")
+    public ResponseEntity<List<User>> getUserByRole () {
+        List<User> users = userService.getByRole("ROLE_MASTER");
+        System.out.println(users.get(0).toString());
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/user")
